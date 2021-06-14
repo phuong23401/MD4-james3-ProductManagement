@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>CREATE NEW PRODUCT</title>
+</head>
+<body>
+<center>
+    <h3>Create New Product</h3>
+    <p>
+        <a th:href="@{/product}">
+            Back to product list
+        </a>
+    </p>
+    <form th:action="@{/product/create}" th:object="${product}"
+          method="post">
+        <table>
+            <input type="hidden" th:field="*{id}"/>
+            <tr>
+                <td>
+                    <label>Name</label>
+                </td>
+                <th>
+                    <input type="text" th:field="*{name}"/>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <label>Description</label>
+                </td>
+                <th>
+                    <input type="text" th:field="*{description}"/>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <label>Manufacture Date</label>
+                </td>
+                <th>
+                    <input type="text" th:field="*{manuDate}"/>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <label>Expiry Date</label>
+                </td>
+                <th>
+                    <input type="text" th:field="*{expiryDate}"/>
+                </th>
+            </tr>
+        </table>
+        <input type="submit" value="Create"/>
+    </form>
+    <footer th:replace="/layout :: footer"></footer>
+</center>
+</body>
+</html>

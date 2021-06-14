@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout :: head">
+    <meta charset="UTF-8">
+    <title>PRODUCT LIST</title>
+</head>
+<body>
+<center>
+    <form method="post">
+        <h3>Product Lisst</h3>
+        <p>
+            <a th:href="@{/product/create}">
+                Create new product
+            </a>
+            <input type="text" name="name">
+            <button type="submit" th:href="@{/product/search-result}">Search</button>
+        </p>
+        <table id="products">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="row,rowStat : ${productList}">
+                <td th:text="${row.id}"></td>
+                <td th:text="${row.name}"></td>
+                <td th:text="${row.description}"></td>
+                <td><a th:href="@{/product/{id}/edit(id=${row.id})}">Edit</a></td>
+                <td><a th:href="@{/product/{id}/delete(id=${row.id})}">Delete</a></td>
+                <td><a th:href="@{/product/{id}/details(id=${row.id})}">Details</a></td>
+            </tr>
+            </tbody>
+            <div class="notify">
+                <!--/*@thymesVar id="success" type="controller"*/-->
+                <div th:if="${success}">
+                    <span th:text="${success}"></span>
+                </div>
+            </div>
+        </table>
+        <footer th:replace="/layout :: footer"></footer>
+    </form>
+</center>
+</body>
+</html>
